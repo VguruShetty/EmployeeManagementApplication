@@ -49,3 +49,27 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+.spinner {
+    border: 8px solid silver;
+    border-top: 8px solid #337AB7;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    /* Perfect Centering */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Combines centering offset and the rotation animation */
+    animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+    /* translate(-50%, -50%) ensures it stays centered while rotating */
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
