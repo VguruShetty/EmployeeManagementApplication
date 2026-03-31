@@ -1,11 +1,11 @@
 ﻿@page "/"
 @inherits EmployeeListBase
-<link href="app.css" rel="stylesheet" />
 
 <h3>Employee List</h3>
-@if(Employees == null)
+
+@if (Employees == null)
 {
-    <div class="spinner"></div>
+    <span class="loader"></span>
 }
 else
 {

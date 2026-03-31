@@ -6,11 +6,10 @@ namespace EmployeeManagement.Web.Components.Pages
     public class EmployeeListBase : ComponentBase
     {
         public IEnumerable<Employee> Employees { get; set; }
-
         protected override async Task OnInitializedAsync()
         {
             await Task.Run(LoadEmployee);
-            //return base.OnInitializedAsync();
+
         }
         public void LoadEmployee()
         {
