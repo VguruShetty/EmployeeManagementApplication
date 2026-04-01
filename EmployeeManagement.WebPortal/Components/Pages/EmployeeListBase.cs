@@ -28,11 +28,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 Email = "John.Ibrahim@gmail.com",
                 DateOfBirth = new DateTime(1989, 9, 10),
                 Gender = Gender.Male,
-                Department = new Department
-                {
-                    DepartmentId = 3,
-                    DepartmentName = "Physics"
-                },
+                DepartmentId = 1,
                 PhotoPath = "images/John.jpeg"
             };
             Employee e2 = new Employee
@@ -43,11 +39,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 Email = "Jalina.Ibrahim@gmail.com",
                 DateOfBirth = new DateTime(1994, 4, 14),
                 Gender = Gender.Female,
-                Department = new Department
-                {
-                    DepartmentId = 1,
-                    DepartmentName = "Biology"
-                },
+                DepartmentId = 2,
                 PhotoPath = "images/Jalina.jpeg"
             };
             Employee e3 = new Employee
@@ -58,11 +50,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 Email = "Mary.Jack@gmail.com",
                 DateOfBirth = new DateTime(1994, 4, 14),
                 Gender = Gender.Female,
-                Department = new Department
-                {
-                    DepartmentId = 1,
-                    DepartmentName = "Biology"
-                },
+                DepartmentId = 3,
                 PhotoPath = "images/Mary.jpeg"
             };
             Employee e4 = new Employee
@@ -73,11 +61,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 Email = "Goli.Patel@gmail.com",
                 DateOfBirth = new DateTime(1985, 1, 19),
                 Gender = Gender.Male,
-                Department = new Department
-                {
-                    DepartmentId = 2,
-                    DepartmentName = "Chemistry"
-                },
+                DepartmentId = 2,
                 PhotoPath = "images/Goli.jpeg"
             };
             Employee e5 = new Employee
@@ -88,11 +72,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 Email = "Sharath.Roy@gmail.com",
                 DateOfBirth = new DateTime(1991, 12, 07),
                 Gender = Gender.Male,
-                Department = new Department
-                {
-                    DepartmentId = 4,
-                    DepartmentName = "Mathmatics"
-                },
+                DepartmentId = 1,
                 PhotoPath = "images/Sharath.jpeg"
             };
             Employees = new List<Employee> { e1, e2, e3, e4, e5 };
