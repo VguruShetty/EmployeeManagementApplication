@@ -1,12 +1,12 @@
-﻿@page "/"
+﻿@page "/counter"
 @inherits EmployeeListBase
+
 
 <h3>Employee List</h3>
 
-<div class="spin-loader"></div>
-
 @if (Employees == null)
 {
+    <p><em>Loading...</em></p>
     <div class="spinner"></div>
 }
 else
@@ -14,7 +14,6 @@ else
     <div class="row">
         @foreach (var employee in Employees)
         {
-
             <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="card-header">
@@ -23,9 +22,7 @@ else
                     <img class="card-img-top" height="200px" width="auto" src="@employee.PhotoPath" />
                     <div class="card-footer text-center">
                         <a href="#" class="btn btn-primary m-1">View</a>
-
                         <a href="#" class="btn btn-primary m-1">Edit</a>
-
                         <a href="#" class="btn btn-danger m-1">Delete</a>
                     </div>
                 </div>
@@ -33,3 +30,79 @@ else
         }
     </div>
 }
+
+@* @code
+{
+    public IEnumerable<Employee> Employees { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _ = LoadEmployeesAsync();
+    }
+
+    private async Task LoadEmployeesAsync()
+    {
+        await Task.Delay(5000); // simulate API delay
+
+        Employees = new List<Employee>
+        {
+            new Employee
+            {
+                EmployeeId = 1,
+                FirstName = "John",
+                LastName = "Ibrahim",
+                Email = "John.Ibrahim@gmail.com",
+                DateOfBirth = new DateTime(1989, 9, 10),
+                Gender = Gender.Male,
+                Department = new Department { DepartmentId = 3, DepartmentName = "Physics" },
+                PhotoPath = "images/John.jpeg"
+            },
+            new Employee
+            {
+                EmployeeId = 2,
+                FirstName = "Jalina",
+                LastName = "Ibrahim",
+                Email = "Jalina.Ibrahim@gmail.com",
+                DateOfBirth = new DateTime(1994, 4, 14),
+                Gender = Gender.Female,
+                Department = new Department { DepartmentId = 1, DepartmentName = "Biology" },
+                PhotoPath = "images/Jalina.jpeg"
+            },
+            new Employee
+            {
+                EmployeeId = 3,
+                FirstName = "Mary",
+                LastName = "Jack",
+                Email = "Mary.Jack@gmail.com",
+                DateOfBirth = new DateTime(1994, 4, 14),
+                Gender = Gender.Female,
+                Department = new Department { DepartmentId = 1, DepartmentName = "Biology" },
+                PhotoPath = "images/Mary.jpeg"
+            },
+            new Employee
+            {
+                EmployeeId = 4,
+                FirstName = "Goli",
+                LastName = "Patel",
+                Email = "Goli.Patel@gmail.com",
+                DateOfBirth = new DateTime(1985, 1, 19),
+                Gender = Gender.Male,
+                Department = new Department { DepartmentId = 2, DepartmentName = "Chemistry" },
+                PhotoPath = "images/Goli.jpeg"
+            },
+            new Employee
+            {
+                EmployeeId = 5,
+                FirstName = "Sharath",
+                LastName = "Roy",
+                Email = "Sharath.Roy@gmail.com",
+                DateOfBirth = new DateTime(1991, 12, 07),
+                Gender = Gender.Male,
+                Department = new Department { DepartmentId = 4, DepartmentName = "Mathematics" },
+                PhotoPath = "images/Sharath.jpeg"
+            }
+        };
+
+        StateHasChanged();
+    }
+} *@
