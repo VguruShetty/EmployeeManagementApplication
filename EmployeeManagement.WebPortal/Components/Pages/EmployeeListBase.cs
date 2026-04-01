@@ -1,7 +1,7 @@
 ﻿using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace EmployeeManagement.Web.Components.Pages
+namespace EmployeeManagement.WebPortal.Components.Pages
 {
     public class EmployeeListBase : ComponentBase
     {
@@ -9,8 +9,8 @@ namespace EmployeeManagement.Web.Components.Pages
         protected override async Task OnInitializedAsync()
         {
             await Task.Run(LoadEmployee);
-
         }
+
         public void LoadEmployee()
         {
             Thread.Sleep(5000);
@@ -20,9 +20,9 @@ namespace EmployeeManagement.Web.Components.Pages
                 FirstName = "John",
                 LastName = "Ibrahim",
                 Email = "John.Ibrahim@gmail.com",
-                DateOfBirth = new DateTime(1989, 9 , 10),
+                DateOfBirth = new DateTime(1989, 9, 10),
                 Gender = Gender.Male,
-                Department = new Department { DepartmentId = 3, DepartmentName = "Physics"},
+                Department = new Department { DepartmentId = 3, DepartmentName = "Physics" },
                 PhotoPath = "images/John.jpeg"
             };
             Employee e2 = new Employee
@@ -69,7 +69,7 @@ namespace EmployeeManagement.Web.Components.Pages
                 Department = new Department { DepartmentId = 4, DepartmentName = "Mathmatics" },
                 PhotoPath = "images/Sharath.jpeg"
             };
-            Employees = new List<Employee> { e1, e2, e3, e4, e5};
+            Employees = new List<Employee> { e1, e2, e3, e4, e5 };
         }
 
     }
