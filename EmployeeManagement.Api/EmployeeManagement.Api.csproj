@@ -18,8 +18,4 @@
     <ProjectReference Include="..\EmployeeManagement.Models\EmployeeManagement.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
 </Project>
