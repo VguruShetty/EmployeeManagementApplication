@@ -20,11 +20,11 @@ namespace EmployeeManagement.Api.Models
             modelBuilder.Entity<Department>().HasData(
                 new Department { DepartmentId = 1, DepartmentName = "IT"});
             modelBuilder.Entity<Department>().HasData(
-               new Department { DepartmentId = 1, DepartmentName = "HR" });
+               new Department { DepartmentId = 2, DepartmentName = "HR" });
             modelBuilder.Entity<Department>().HasData(
-               new Department { DepartmentId = 1, DepartmentName = "Payroll" });
+               new Department { DepartmentId = 3, DepartmentName = "Payroll" });
             modelBuilder.Entity<Department>().HasData(
-               new Department { DepartmentId = 1, DepartmentName = "Admin" });
+               new Department { DepartmentId = 4, DepartmentName = "Admin" });
 
             // seed data for employee
 
