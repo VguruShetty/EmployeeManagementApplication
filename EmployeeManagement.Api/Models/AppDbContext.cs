@@ -40,6 +40,42 @@ namespace EmployeeManagement.Api.Models
                     DepartmentId = 1,
                     PhotoPath = "images/john.png"
                 });
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee
+                {
+                    EmployeeId = 2,
+                    FirstName = "Jalina",
+                    LastName = "Ibrahim",
+                    Email = "Jalina.Ibrahim@gmail.com",
+                    DateOfBirth = new DateTime(1994, 4, 14),
+                    Gender = Gender.Female,
+                    DepartmentId = 2,
+                    PhotoPath = "images/Jalina.jpeg"
+                });
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee
+                {
+                    EmployeeId = 3,
+                    FirstName = "Mary",
+                    LastName = "Jack",
+                    Email = "Mary.Jack@gmail.com",
+                    DateOfBirth = new DateTime(1994, 4, 14),
+                    Gender = Gender.Female,
+                    DepartmentId = 3,
+                    PhotoPath = "images/Mary.jpeg"
+                });
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee
+                {
+                    EmployeeId = 4,
+                    FirstName = "Sharath",
+                    LastName = "Roy",
+                    Email = "Sharath.Roy@gmail.com",
+                    DateOfBirth = new DateTime(1991, 12, 07),
+                    Gender = Gender.Male,
+                    DepartmentId = 1,
+                    PhotoPath = "images/Sharath.jpeg"
+                });
         }
     }
 }
