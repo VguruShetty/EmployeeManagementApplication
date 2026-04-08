@@ -77,7 +77,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             };
             Employees = new List<Employee> { e1, e2, e3, e4, e5 };
 
-            //StateHasChanged(); 
+            //StateHasChanged();
         }
 
     }
