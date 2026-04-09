@@ -5,7 +5,11 @@ namespace EmployeeManagement.Api.Models
 {
     public interface IEmployeeRepository
     {
-
+        Task<IEnumerable<Employee>> GetEmployees();
+        Task<Employee> GetEmployee(int employeeId);
+        Task<Employee> AddEmployee(Employee employee);
+        Task<Employee> UpdateEmployee(Employee employee);
+        void DeleteEmployee(int employeeId);
     }
     public class EmployeeRepository : IEmployeeRepository
     {
@@ -21,16 +25,15 @@ namespace EmployeeManagement.Api.Models
             await appDbContext.SaveChangesAsync();
             return result.Entity;
         }
-        public async Task<Employee> DeleteEmployee(int id)
+        public async void DeleteEmployee(int employeeId)
         {
-            var result = await appDbContext.Employees.FirstOrDefaultAsync(e => e.EmployeeId == id);
+            var result = await appDbContext.Employees
+                .FirstOrDefaultAsync(e => e.EmployeeId == employeeId);
             if (result != null)
             {
                 appDbContext.Employees.Remove(result);
                 await appDbContext.SaveChangesAsync();
-                return result;
             }
-            return null;
         }
         public async Task<Employee> GetEmployee(int id)
         {
