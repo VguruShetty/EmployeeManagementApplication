@@ -23,10 +23,10 @@ namespace EmployeeManagement.Api.Controllers
             catch (Exception)
             {
 
-                return StatusCode(StatusCodes.Status500InternalServerError, 
+                return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error retrieving data from database");
             }
-            
+
         }
         [HttpGet("{id:int}")]
         public async Task<ActionResult> GetEmployees(int id)
@@ -45,15 +45,15 @@ namespace EmployeeManagement.Api.Controllers
         }
         [HttpPost]
         public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
-        {            
+        {
             try
             {
-                if(employee == null)
+                if (employee == null)
                 {
                     return BadRequest();
                 }
                 var emp = await employeeRepository.AddEmployee(employee);
-                return CreatedAtAction(nameof(GetEmployees), new { id = emp.EmployeeId}, emp);
+                return CreatedAtAction(nameof(GetEmployees), new { id = emp.EmployeeId }, emp);
             }
             catch (Exception)
             {
@@ -61,17 +61,17 @@ namespace EmployeeManagement.Api.Controllers
                     "Error retrieving data from database");
             }
         }
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public async Task<ActionResult<Employee>> UpdateEmployee(int id, Employee employee)
         {
             try
             {
-                if(id != employee.EmployeeId)
+                if (id != employee.EmployeeId)
                 {
                     return BadRequest("Employee Id mismatch");
                 }
                 var emp = await employeeRepository.GetEmployee(employee.EmployeeId);
-                if(emp == null)
+                if (emp == null)
                 {
                     return NotFound($"Employee with Id = {employee.EmployeeId} not found");
                 }
@@ -83,4 +83,5 @@ namespace EmployeeManagement.Api.Controllers
                     "Error updating data from database");
             }
         }
+    }
 }
