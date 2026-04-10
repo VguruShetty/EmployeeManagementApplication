@@ -9,7 +9,7 @@ namespace EmployeeManagement.Api.Models
         Task<Employee> GetEmployee(int employeeId);
         Task<Employee> AddEmployee(Employee employee);
         Task<Employee> UpdateEmployee(Employee employee);
-        void DeleteEmployee(int employeeId);
+        Task<Employee> DeleteEmployee(int employeeId);
     }
     public class EmployeeRepository : IEmployeeRepository
     {
@@ -25,7 +25,7 @@ namespace EmployeeManagement.Api.Models
             await appDbContext.SaveChangesAsync();
             return result.Entity;
         }
-        public async void DeleteEmployee(int employeeId)
+        public async Task<Employee> DeleteEmployee(int employeeId)
         {
             var result = await appDbContext.Employees
                 .FirstOrDefaultAsync(e => e.EmployeeId == employeeId);
@@ -33,7 +33,9 @@ namespace EmployeeManagement.Api.Models
             {
                 appDbContext.Employees.Remove(result);
                 await appDbContext.SaveChangesAsync();
+                return result;
             }
+            return null;
         }
         public async Task<Employee> GetEmployee(int id)
         {
