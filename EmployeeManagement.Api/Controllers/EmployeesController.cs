@@ -7,12 +7,12 @@ namespace EmployeeManagement.Api.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
-     private readonly IEmployeeRepository employeeRepository;
+        private readonly IEmployeeRepository employeeRepository;
         public EmployeesController(IEmployeeRepository employeeRepository)
         {
             this.employeeRepository = employeeRepository;
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult> GetEmployees()
         {
             try
