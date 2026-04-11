@@ -103,7 +103,7 @@ namespace EmployeeManagement.Api.Controllers
                     "Error deleting data from database");
             }
         }
-        [HttpGet("{search}")]
+        [HttpGet("{search}/{name}/{gender?}")]
         public async Task<ActionResult<IEnumerable<Employee>>> SearchEmployee(string name, Gender? gender)
         {
             try
