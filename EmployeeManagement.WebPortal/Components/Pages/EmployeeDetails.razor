@@ -1,28 +1,29 @@
-﻿@page "/employeedetails/{id}"
+﻿@page "/employeedetails/{Id}"
 @inherits EmployeeDetailsBase
 
-@if(Employee == null)
+@if (Employee == null)
 {
 	<p><em>Loading...</em></p>
 	<div class="spinner"></div>
 }
 else
 {
-	<div class="row justify-content-center m-3">
+	<div class="row justify-content-center m-3" @onmousemove="Mouse_Move">
 		<div class="col-sm-8">
 			<div class="card">
 				<div class="card-header">
-					<h1>@Employee.FirstName @Employee.LastName @Coordinates</h1>
+					<h1>@Employee.FirstName @Employee.LastName</h1>
+					<p class="small text-muted">Pointer: @Coordinates</p>
 				</div>
 				<div class="card-body text-center">
-					<img class="card-img-top" src="@Employee.PhotoPath" 
-						@onmousemove = "@Mouse_Move"/>
+					<img class="card-img-top" style="height:200px; width:auto;" src="@Employee.PhotoPath" />
 
 					<h4>Employee ID : @Employee.EmployeeId</h4>
 					<h4>Email : @Employee.Email</h4>
 					<h4>Department : @(Employee.Department == null ? "NA" : Employee.Department.DepartmentName)</h4>
+					<button class="btn btn-primary" @onclick="Button_Click">@ButtonText</button>
 				</div>
-				<div class="card-footer text-center">
+				<div class="card-footer text-center @CssClass">
 					<a href="/" class="btn btn-primary m-1">Back</a>
 					<a href="#" class="btn btn-primary m-1">Edit</a>
 					<a href="#" class="btn btn-danger m-1">Delete</a>
@@ -32,4 +33,3 @@ else
 		</div>
 	</div>
 }
-
