@@ -103,5 +103,25 @@ namespace EmployeeManagement.Api.Controllers
                     "Error deleting data from database");
             }
         }
+        [HttpGet("{search}")]
+        public async Task<ActionResult<IEnumerable<Employee>>> SearchEmployee(string name, Gender? gender)
+        {
+            try
+            {
+                var result = await employeeRepository.SearchEmployee(name, gender);
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+                return NotFound("No employees found");
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error searching data from database");
+            }
+
+        }
     }
 }

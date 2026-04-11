@@ -10,6 +10,7 @@ namespace EmployeeManagement.Api.Models
         Task<Employee> AddEmployee(Employee employee);
         Task<Employee> UpdateEmployee(Employee employee);
         Task<Employee> DeleteEmployee(int employeeId);
+        Task<IEnumerable<Employee>> SearchEmployee(string name, Gender? gender);
     }
     public class EmployeeRepository : IEmployeeRepository
     {
@@ -45,6 +46,21 @@ namespace EmployeeManagement.Api.Models
         {
             return await appDbContext.Employees.ToListAsync();
         }
+
+        public async Task<IEnumerable<Employee>> SearchEmployee(string name, Gender? gender)
+        {
+            IQueryable<Employee> query = appDbContext.Employees;
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(e => e.FirstName.Contains(name) || e.LastName.Contains(name));
+            }
+            if ( gender != null)
+            {
+                query = query.Where(e => e.Gender == gender);
+            }
+                return await query.ToListAsync();
+        }
+
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
             var result = await appDbContext.Employees.FirstOrDefaultAsync(e => e.EmployeeId == employee.EmployeeId);
