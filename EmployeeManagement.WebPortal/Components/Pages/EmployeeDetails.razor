@@ -1,4 +1,5 @@
 ﻿@page "/employeedetails/{Id}"
+@rendermode InteractiveServer
 @inherits EmployeeDetailsBase
 
 @if (Employee == null)
@@ -22,35 +23,18 @@ else
 					<h4>Employee ID : @Employee.EmployeeId</h4>
 					<h4>Email : @Employee.Email</h4>
 					<h4>Department : @(Employee.Department == null ? "NA" : Employee.Department.DepartmentName)</h4>
-					<button type="button" class="btn btn-primary" @onclick="Toggle">
-						@ButtonText
-					</button>
-
+					<button class="btn btn-primary m-1" @onclick="ToggleFooter">@ButtonText</button>
 				</div>
-				@if (isVisible)
+				@if (isFooterVisible)
 				{
-					<div class="card-footer text-center" style="visibility:@(isVisible ? "visible" : "hidden")">
+					<div class="card-footer text-center CssClass">
 						<a href="/" class="btn btn-primary m-1">Back</a>
 						<a href="#" class="btn btn-primary m-1">Edit</a>
 						<a href="#" class="btn btn-danger m-1">Delete</a>
 					</div>
-				}
-
-				
+				}				
 			</div>
 
 		</div>
 	</div>
-}
-
-@code{
-	bool isVisible = true;
-	string ButtonText = "Hide Footer";
-
-	void Toggle()
-	{
-		Console.WriteLine("CLICK WORKED");
-		isVisible = !isVisible;
-		ButtonText = isVisible ? "Hide Footer" : "Show Footer";
-	}
 }

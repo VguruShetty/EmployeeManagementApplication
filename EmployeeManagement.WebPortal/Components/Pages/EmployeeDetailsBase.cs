@@ -9,8 +9,10 @@ namespace EmployeeManagement.WebPortal.Components.Pages
     {
         public Employee Employee { get; set; } = new Employee();
         public string Coordinates { get; set; } = string.Empty;
-        protected string ButtonText { get; set; } = "Hide Footer";
-        protected string CssClass { get; set; } = string.Empty;
+
+        public bool isFooterVisible { get; set; } = false;
+
+        public string ButtonText => isFooterVisible ? "Hide Footer" : "Show Footer";
 
         [Inject]
         public IEmployeeService EmployeeService { get; set; } = null!;
@@ -28,20 +30,11 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         {
             Coordinates = $"X = {e.ClientX} Y = {e.ClientY}";
         }
-
-        protected void Button_Click()
+        public void ToggleFooter()
         {
-            if (CssClass == "HideFooter")
-            {
-                CssClass = string.Empty;
-                ButtonText = "Hide Footer";
-            }
-            else
-            {
-                CssClass = "HideFooter";
-                ButtonText = "Show Footer";
-            }
+            isFooterVisible = !isFooterVisible;
+            // 2. Explicitly tell Blazor to re-render the UI
+            this.StateHasChanged();
         }
-       
     }
 }
