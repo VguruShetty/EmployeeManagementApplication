@@ -1,0 +1,17 @@
+﻿@page "/databindingdemo"
+@inherits DatabindingDemoBase
+
+<h1>Data Binding Demo</h1>
+<hr />
+<h3>One Way Data Binding</h3>
+<div>
+	<p>Name : @Name</p>
+</div>
+<hr />
+<div>
+	<b>Name : </b><input value="@Name" @onchange="@(e => {Name = e.Value.ToString();})"/>
+</div>
+
+@code {
+
+}
