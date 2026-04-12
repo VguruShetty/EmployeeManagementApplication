@@ -42,5 +42,6 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 ButtonText = "Show Footer";
             }
         }
+       
     }
 }

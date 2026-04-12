@@ -14,6 +14,7 @@ else
 				<div class="card-header">
 					<h1>@Employee.FirstName @Employee.LastName</h1>
 					<p class="small text-muted">Pointer: @Coordinates</p>
+
 				</div>
 				<div class="card-body text-center">
 					<img class="card-img-top" style="height:200px; width:auto;" src="@Employee.PhotoPath" />
@@ -21,9 +22,12 @@ else
 					<h4>Employee ID : @Employee.EmployeeId</h4>
 					<h4>Email : @Employee.Email</h4>
 					<h4>Department : @(Employee.Department == null ? "NA" : Employee.Department.DepartmentName)</h4>
-					<button class="btn btn-primary" @onclick="Button_Click">@ButtonText</button>
+					<button type="button" class="btn btn-primary" @onclick="Toggle">
+						@ButtonText
+					</button>
+
 				</div>
-				<div class="card-footer text-center @CssClass">
+				<div class="card-footer text-center" style="visibility:@(isVisible ? "visible" : "hidden")">
 					<a href="/" class="btn btn-primary m-1">Back</a>
 					<a href="#" class="btn btn-primary m-1">Edit</a>
 					<a href="#" class="btn btn-danger m-1">Delete</a>
@@ -32,4 +36,17 @@ else
 
 		</div>
 	</div>
+}
+
+@code{
+	protected bool isVisible { get; set; } = true;
+
+	// Make the Toggle method public so it is accessible from the Razor component
+	public void Toggle()
+	{
+		Console.WriteLine("test");
+		isVisible = !isVisible;
+
+		ButtonText = isVisible ? "Hide Footer" : "Show Footer";
+	}
 }
