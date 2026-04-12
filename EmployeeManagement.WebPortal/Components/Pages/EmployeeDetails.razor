@@ -27,11 +27,16 @@ else
 					</button>
 
 				</div>
-				<div class="card-footer text-center" style="visibility:@(isVisible ? "visible" : "hidden")">
-					<a href="/" class="btn btn-primary m-1">Back</a>
-					<a href="#" class="btn btn-primary m-1">Edit</a>
-					<a href="#" class="btn btn-danger m-1">Delete</a>
-				</div>
+				@if (isVisible)
+				{
+					<div class="card-footer text-center" style="visibility:@(isVisible ? "visible" : "hidden")">
+						<a href="/" class="btn btn-primary m-1">Back</a>
+						<a href="#" class="btn btn-primary m-1">Edit</a>
+						<a href="#" class="btn btn-danger m-1">Delete</a>
+					</div>
+				}
+
+				
 			</div>
 
 		</div>
@@ -39,14 +44,13 @@ else
 }
 
 @code{
-	protected bool isVisible { get; set; } = true;
+	bool isVisible = true;
+	string ButtonText = "Hide Footer";
 
-	// Make the Toggle method public so it is accessible from the Razor component
-	public void Toggle()
+	void Toggle()
 	{
-		Console.WriteLine("test");
+		Console.WriteLine("CLICK WORKED");
 		isVisible = !isVisible;
-
 		ButtonText = isVisible ? "Hide Footer" : "Show Footer";
 	}
 }
