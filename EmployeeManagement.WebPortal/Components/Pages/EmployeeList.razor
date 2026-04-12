@@ -1,9 +1,12 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 @inherits EmployeeListBase
 
 
-<h3>Employee List</h3>
 
+<h3>Employee List</h3>
+<input type="checkbox" id="showFooter" @bind="ShowFooter" />
+<label for="showFooter">Show Footer</label>
 @if (Employees == null)
 {
     <p><em>Loading...</em></p>
@@ -14,19 +17,7 @@ else
     <div class="row">
         @foreach (var employee in Employees)
         {
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>@employee.FirstName @employee.LastName</h3>
-                    </div>
-                    <img class="card-img-top" height="200px" width="auto" src="@employee.PhotoPath" />
-                    <div class="card-footer text-center">
-                        <a href= "@($"/employeedetails/{employee.EmployeeId}")" class="btn btn-primary m-1">View</a>
-                        <a href="#" class="btn btn-primary m-1">Edit</a>
-                        <a href="#" class="btn btn-danger m-1">Delete</a>
-                    </div>
-                </div>
-            </div>
+			<DisplayEmployee Employee="employee" ShowFooter="ShowFooter" />
         }
     </div>
 }
