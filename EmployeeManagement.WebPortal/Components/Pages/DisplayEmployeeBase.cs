@@ -14,7 +14,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         public EventCallback<bool> OnEmployeeSelection { get; set; }
         protected async Task CheckBoxChanged(ChangeEventArgs e)
         {
-            OnEmployeeSelection.InvokeAsync((bool)e.Value);
+            OnEmployeeSelection.InvokeAsync((bool)e.Value); 
         }
     }
 }
