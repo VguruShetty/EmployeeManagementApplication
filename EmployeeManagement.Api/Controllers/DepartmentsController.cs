@@ -1,16 +1,14 @@
 ﻿using EmployeeManagement.Api.Models;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace EmployeeManagement.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
     [ApiController]
-    public class DepartmentController : ControllerBase
+    public class DepartmentsController : ControllerBase
     {
         private readonly IDepartmentRepository departmentRepository;
-        public DepartmentController(IDepartmentRepository departmentRepository)
+        public DepartmentsController(IDepartmentRepository departmentRepository)
         {
             this.departmentRepository = departmentRepository;
         }
