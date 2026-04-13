@@ -1,11 +1,12 @@
 ﻿using EmployeeManagement.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement.Api.Models
 {
     public interface IDepartmentRepository
     {
-        IEnumerable<Department> GetDepartments();
-        Department GetDepartment(int departmentId);
+        Task<IEnumerable<Department>> GetDepartments();
+        Task<Department> GetDepartment(int departmentId);
         
     }
     public class DepartmentRepository : IDepartmentRepository
@@ -15,14 +16,14 @@ namespace EmployeeManagement.Api.Models
         {
             this.appDbContext = appDbContext;
         }
-        public Department GetDepartment(int departmentId)
+        public async Task<Department> GetDepartment(int departmentId)
         {
-            return appDbContext.Departments.FirstOrDefault(d => d.DepartmentId == departmentId);
+            return await appDbContext.Departments.FirstOrDefaultAsync(d => d.DepartmentId == departmentId);
         }
 
-        public IEnumerable<Department> GetDepartments()
+        public async Task<IEnumerable<Department>> GetDepartments()
         {
-            return appDbContext.Departments.ToList();
+            return await appDbContext.Departments.ToListAsync();
         }
     }
 }
