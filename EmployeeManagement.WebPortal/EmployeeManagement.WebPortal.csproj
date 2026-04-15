@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EmployeeManagement.Models\EmployeeManagement.Models.csproj" />
+    <ProjectReference Include="..\SharedClass\SharedClass.csproj" />
   </ItemGroup>
 
 </Project>
