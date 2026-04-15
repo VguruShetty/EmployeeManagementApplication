@@ -1,6 +1,9 @@
-﻿namespace EmployeeManagement.WebPortal.Components.Pages
+﻿using Microsoft.AspNetCore.Components.Forms;
+
+namespace EmployeeManagement.WebPortal.Components.Pages
 {
-    public class CustomInputSelect
+    public class CustomInputSelect<TValue> : InputSelect<TValue>
     {
+
     }
 }
