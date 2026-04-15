@@ -30,7 +30,7 @@ namespace EmployeeManagement.WebPortal.Service
             {
                 throw new InvalidOperationException("No departments were found.");
             }
-            return departments;
+            return departments;//D
         }
     }
 }
