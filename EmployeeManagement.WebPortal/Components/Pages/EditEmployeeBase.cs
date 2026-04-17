@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Models;
+using EmployeeManagement.WebPortal.Models;
 using EmployeeManagement.WebPortal.Service;
 using Microsoft.AspNetCore.Components;
 
@@ -10,6 +11,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         public IEmployeeService EmployeeService { get; set; }
 
         public Employee Employee { get; set; } = new Employee();
+        public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
         [Parameter]
         public string Id { get; set; }
 
