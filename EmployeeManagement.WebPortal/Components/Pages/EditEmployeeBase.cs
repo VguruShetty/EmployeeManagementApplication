@@ -10,7 +10,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
 
-        public Employee Employee { get; set; } = new Employee();
+        private Employee Employee { get; set; } = new Employee();
         public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
         [Parameter]
         public string Id { get; set; }
@@ -24,6 +24,17 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
             Departments = (await DepartmentService.GetDepartments()).ToList();
             DepartmentId = Employee.DepartmentId.ToString();
+
+            EditEmployeeModel.EmployeeId = Employee.EmployeeId;
+            EditEmployeeModel.FirstName = Employee.FirstName;
+            EditEmployeeModel.LastName = Employee.LastName;
+            EditEmployeeModel.Email = Employee.Email;
+            EditEmployeeModel.ConfirmEmail = Employee.Email;
+            EditEmployeeModel.DateOfBirth = Employee.DateOfBirth;
+            EditEmployeeModel.Gender = Employee.Gender;
+            EditEmployeeModel.DepartmentId = Employee.DepartmentId;
+            EditEmployeeModel.PhotoPath = Employee.PhotoPath;
+            EditEmployeeModel.Department = Employee.Department;
         }
     }
 }
