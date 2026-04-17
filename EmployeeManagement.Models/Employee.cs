@@ -17,7 +17,7 @@ namespace EmployeeManagement.Models
         [Required]
         public string LastName { get; set; }
         [EmailAddress]
-        [EmailDomainValidator]
+        [EmailDomainValidator(AllowedDomain = "gmail.com")]
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
