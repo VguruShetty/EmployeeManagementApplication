@@ -2,7 +2,7 @@
 @rendermode InteractiveServer
 @inherits EditEmployeeBase
 
-<EditForm Model="@EditEmployeeModel">
+<EditForm Model="@EditEmployeeModel" OnValidSubmit="HandelValidSubmit">
 	<DataAnnotationsValidator />
 	<ValidationSummary />
 	<h3>EditEmployee</h3>

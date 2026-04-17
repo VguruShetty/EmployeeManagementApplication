@@ -36,5 +36,8 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             EditEmployeeModel.PhotoPath = Employee.PhotoPath;
             EditEmployeeModel.Department = Employee.Department;
         }
+        protected void HandelValidSubmit()
+        {
+        }
     }
 }
