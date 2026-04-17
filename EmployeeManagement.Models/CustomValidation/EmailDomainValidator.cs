@@ -9,5 +9,18 @@ namespace EmployeeManagement.Models.CustomValidation
 {
     public class EmailDomainValidator: ValidationAttribute
     {
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+        {
+            string[] strings = value.ToString().Split('@');
+            if (strings[1].ToLower() == "gmail.com")
+            {
+                return null;
+            }
+            else
+            {
+                return new ValidationResult("Email domain must be gmail.com",
+                    new[] { validationContext.MemberName });
+            }
+        }
     }
 }
