@@ -15,6 +15,7 @@ namespace EmployeeManagement.WebPortal.Models
         //[EmailAddress]
         [EmailDomainValidator(AllowedDomain = "gmail.com")]
         public string Email { get; set; }
+        [Compare("Email", ErrorMessage = "Email and Confirm Email do not match.")]
         public string ConfirmEmail { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
