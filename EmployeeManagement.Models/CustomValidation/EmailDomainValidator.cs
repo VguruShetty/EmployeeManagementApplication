@@ -13,7 +13,11 @@ namespace EmployeeManagement.Models.CustomValidation
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             string[] strings = value.ToString().Split('@');
-            if (strings[1].ToLower() == AllowedDomain.ToLower())
+            if(strings.Length > 0)
+            {
+                return new ValidationResult($"Email can't be a null",
+                    new[] { validationContext.MemberName });
+            }else if (strings[1].ToLower() == AllowedDomain.ToLower())
             {
                 return null;
             }
