@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Models.CustomValidation
 {
-    internal class EmailDomainValidator
+    public class EmailDomainValidator
     {
     }
 }
