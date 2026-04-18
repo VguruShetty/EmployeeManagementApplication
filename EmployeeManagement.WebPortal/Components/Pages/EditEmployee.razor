@@ -92,6 +92,7 @@
 		<div class="col-sm-10">
 			<InputText id="deptName" class="form-control" @bind-Value="EditEmployeeModel.Department.DepartmentName">
 			</InputText>
+			<ValidationMessage For="@(() => EditEmployeeModel.Department.DepartmentName)" />
 		</div>
 	</div>
 	<button class="btm btn-primary" type="submit">Submit</button>
