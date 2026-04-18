@@ -3,8 +3,8 @@
 @inherits EditEmployeeBase
 
 <EditForm Model="@EditEmployeeModel" OnValidSubmit="HandelValidSubmit">
-	<DataAnnotationsValidator />
-	<ValidationSummary />
+	<ObjectGraphDataAnnotationsValidator  />
+	
 	<h3>EditEmployee</h3>
 	<hr />
 	<div class="form-group row">
