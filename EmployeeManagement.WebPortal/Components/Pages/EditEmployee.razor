@@ -1,6 +1,8 @@
 ﻿@page "/editemployee/{id}"
 @rendermode InteractiveServer
 @inherits EditEmployeeBase
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components
 
 <EditForm Model="@EditEmployeeModel" OnValidSubmit="HandelValidSubmit">
 	<ObjectGraphDataAnnotationsValidator  />

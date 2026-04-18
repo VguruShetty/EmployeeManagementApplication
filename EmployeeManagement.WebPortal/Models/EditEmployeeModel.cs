@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net.NetworkInformation;
 using EmployeeManagement.Models;
 using EmployeeManagement.Models.CustomValidation;
+using Microsoft.AspNetCore.Components;
 
 namespace EmployeeManagement.WebPortal.Models
 {
