@@ -11,7 +11,8 @@ namespace EmployeeManagement.Models
     public class Employee
     {
         public int EmployeeId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "First Name is required")]
+        [MinLength(2)]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
@@ -22,7 +23,6 @@ namespace EmployeeManagement.Models
         public Gender Gender { get; set; }
         public int DepartmentId { get; set; }
         public string PhotoPath { get; set; }
-        [ValidateComplexType]
-        public Department Department { get; set; } = new Department();
+        public Department Department { get; set; }
     }
 }

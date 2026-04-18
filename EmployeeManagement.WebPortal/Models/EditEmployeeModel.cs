@@ -7,8 +7,7 @@ namespace EmployeeManagement.WebPortal.Models
     public class EditEmployeeModel
     {
         public int EmployeeId { get; set; }
-        [Required(ErrorMessage = "First Name is required")]
-        [MinLength(2)]
+        [Required]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
@@ -21,6 +20,7 @@ namespace EmployeeManagement.WebPortal.Models
         public Gender Gender { get; set; }
         public int DepartmentId { get; set; }
         public string PhotoPath { get; set; }
-        public Department Department { get; set; }
+        [ValidateComplexType]
+        public Department Department { get; set; } = new Department();
     }
 }
