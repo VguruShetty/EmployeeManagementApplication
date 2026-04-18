@@ -1,4 +1,5 @@
 using EmployeeManagement.WebPortal.Components;
+using EmployeeManagement.WebPortal.Models;
 using EmployeeManagement.WebPortal.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,7 @@ builder.Services.AddHttpClient<IDepartmentService, DepartmentService>(client =>
 {
     client.BaseAddress = new Uri("https://localhost:7003/");
 });
-builder.Services.AddAutoMapper();
+builder.Services.AddAutoMapper(typeof(EmployeeProfile));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
