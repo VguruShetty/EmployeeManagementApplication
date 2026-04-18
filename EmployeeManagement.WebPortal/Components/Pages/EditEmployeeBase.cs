@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using EmployeeManagement.Models;
 using EmployeeManagement.WebPortal.Models;
 using EmployeeManagement.WebPortal.Service;
@@ -20,6 +21,8 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         public IDepartmentService DepartmentService { get; set; }
         [Inject]
         public IMapper Mapper { get; set; }
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
         public List<Department> Departments { get; set; } = new List<Department>();
         public string DepartmentId { get; set; }
         protected async override Task OnInitializedAsync()
@@ -41,8 +44,14 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             //EditEmployeeModel.PhotoPath = Employee.PhotoPath;
             //EditEmployeeModel.Department = Employee.Department;
         }
-        protected void HandelValidSubmit()
+        protected async Task HandelValidSubmit()
         {
+            var result = await EmployeeService.UpdateEmployee(Mapper.Map(EditEmployeeModel, Employee));
+            if(result != null)
+            {
+                // Navigate to the employee details page
+                NavigationManager.NavigateTo($"/");
+            }
         }
     }
 }

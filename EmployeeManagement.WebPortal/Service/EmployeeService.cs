@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.Models;
+﻿using System.Net.Http.Json;
+using EmployeeManagement.Models;
 
 namespace EmployeeManagement.WebPortal.Service
 {
@@ -6,6 +7,7 @@ namespace EmployeeManagement.WebPortal.Service
     {
         Task<IEnumerable<Employee>> GetEmployees();
         Task<Employee> GetEmployee(int id);
+        Task<Employee> UpdateEmployee(Employee employee);
     }
     public class EmployeeService : IEmployeeService
     {
@@ -28,6 +30,13 @@ namespace EmployeeManagement.WebPortal.Service
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             return await httpClient.GetFromJsonAsync<Employee[]>("/api/employees");
+        }
+
+        public async Task<Employee> UpdateEmployee(Employee employee)
+        {
+            var response = await httpClient.PutAsJsonAsync("/api/employees", employee);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<Employee>();
         }
     }
 }
