@@ -27,9 +27,23 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         public string DepartmentId { get; set; }
         protected async override Task OnInitializedAsync()
         {
-            Employee = await EmployeeService.GetEmployee(int.Parse(Id));
+            int.TryParse(Id, out int employeeId);
+            if(employeeId != 0)
+            {
+                Employee = await EmployeeService.GetEmployee(int.Parse(Id));
+            }
+            else
+            {
+                Employee = new Employee
+                {
+                    DepartmentId = 1,
+                    DateOfBirth = DateTime.Now,
+                    PhotoPath = "images/Goli.jpeg"
+                };
+            }
+
             Departments = (await DepartmentService.GetDepartments()).ToList();
-            DepartmentId = Employee.DepartmentId.ToString();
+            //DepartmentId = Employee.DepartmentId.ToString();
 
             Mapper.Map(Employee, EditEmployeeModel);
 
@@ -46,7 +60,15 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         }
         protected async Task HandelValidSubmit()
         {
-            var result = await EmployeeService.UpdateEmployee(Mapper.Map(EditEmployeeModel, Employee));
+            Employee result = null;
+            if(Employee.EmployeeId != 0)
+            {
+                 result = await EmployeeService.UpdateEmployee(Mapper.Map(EditEmployeeModel, Employee));
+            }
+            else
+            {
+                 result = await EmployeeService.CreateEmployee(Mapper.Map(EditEmployeeModel, Employee));
+            }
             if(result != null)
             {
                 // Navigate to the employee details page

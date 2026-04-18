@@ -12,20 +12,20 @@ namespace EmployeeManagement.Models.CustomValidation
         public string AllowedDomain { get; set; } = "gmail.com";
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            string[] strings = value.ToString().Split('@');
-            if(strings.Length != 2)
+            if (value != null)
             {
-                return new ValidationResult($"Email can't be a null",
-                    new[] { validationContext.MemberName });
-            }else if (strings[1].ToLower() == AllowedDomain.ToLower())
-            {
-                return null;
+                string[] strings = value.ToString().Split('@');
+               if (strings.Length > 1 && strings[1].ToLower() == AllowedDomain.ToLower())
+                {
+                    return null;
+                }
+                else
+                {
+                    return new ValidationResult($"Email domain must be {AllowedDomain}",
+                        new[] { validationContext.MemberName });
+                }
             }
-            else
-            {
-                return new ValidationResult($"Email domain must be {AllowedDomain}",
-                    new[] { validationContext.MemberName });
-            }
+            return null;
         }
     }
 }

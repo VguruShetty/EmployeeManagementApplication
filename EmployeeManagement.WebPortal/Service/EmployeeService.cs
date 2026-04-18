@@ -8,6 +8,7 @@ namespace EmployeeManagement.WebPortal.Service
         Task<IEnumerable<Employee>> GetEmployees();
         Task<Employee> GetEmployee(int id);
         Task<Employee> UpdateEmployee(Employee employee);
+        Task<Employee> CreateEmployee(Employee employee);
     }
     public class EmployeeService : IEmployeeService
     {
@@ -15,6 +16,13 @@ namespace EmployeeManagement.WebPortal.Service
         public EmployeeService(HttpClient httpClient)
         {
             this.httpClient = httpClient;
+        }
+
+        public async Task<Employee> CreateEmployee(Employee employee)
+        {
+            var response = await httpClient.PostAsJsonAsync("/api/employees", employee);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<Employee>();
         }
 
         public async Task<Employee> GetEmployee(int id)

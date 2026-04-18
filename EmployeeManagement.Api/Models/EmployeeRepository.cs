@@ -11,6 +11,7 @@ namespace EmployeeManagement.Api.Models
         Task<Employee> UpdateEmployee(Employee employee);
         Task<Employee> DeleteEmployee(int employeeId);
         Task<IEnumerable<Employee>> SearchEmployee(string name, Gender? gender);
+        Task<Employee> GetEmployeeByEmail(string email);
     }
     public class EmployeeRepository : IEmployeeRepository
     {
@@ -42,6 +43,12 @@ namespace EmployeeManagement.Api.Models
         {
             return await appDbContext.Employees.Include(e => e.Department).FirstOrDefaultAsync(e => e.EmployeeId == id);
         }
+
+        public async Task<Employee> GetEmployeeByEmail(string email)
+        {
+            return await appDbContext.Employees.FirstOrDefaultAsync(e => e.Email == email);
+        }
+
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             return await appDbContext.Employees.ToListAsync();
