@@ -15,14 +15,14 @@
         </div>
 
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/editemployee" @onclick="HandleClick">
+            <NavLink class="nav-link" href="/editemployee" @onclick="HandleClick" Match="NavLinkMatch.All">
                 <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Create
             </NavLink>
         </div>
 
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/editemployee" >
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Edit
+            <NavLink class="nav-link" href="/editemployee/1" Match="NavLinkMatch.All">
+                <span class="bi bi-pencil-nav-menu" aria-hidden="true"></span> Edit
             </NavLink>
         </div>
     </nav>
