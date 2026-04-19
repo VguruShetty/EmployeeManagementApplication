@@ -96,10 +96,10 @@
 			<ValidationMessage For="@(() => EditEmployeeModel.Department.DepartmentName)" />
 		</div>
 	</div> *@
-	<button class="btm btn-primary" type="submit">Submit</button>
+	<button class="btn btn-primary" type="submit">Submit</button>
 	@if (EditEmployeeModel.EmployeeId > 0)
 	{
-		<button class="btm btn-danger" type="delete" style="margin-left:5px" @onclick="Delete">Delete</button>
+		<button class="btn btn-danger" type="delete" @onclick="Delete">Delete</button>
 	}
 	
 </EditForm>

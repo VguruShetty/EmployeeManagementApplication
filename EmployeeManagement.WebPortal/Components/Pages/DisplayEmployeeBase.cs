@@ -12,6 +12,8 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         public bool ShowFooter { get; set; }
         [Parameter]
         public EventCallback<bool> OnEmployeeSelection { get; set; }
+        [Parameter]
+        public EventCallback OnEmployeeDeleted { get; set; }
         [Inject]
         protected IEmployeeService EmployeeService { get; set; }
         [Inject]
@@ -24,7 +26,8 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         protected async Task Delete()
         {
             await EmployeeService.DeleteEmployee(Employee.EmployeeId);
-            NavigationManager.NavigateTo($"/");
+            await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+           // NavigationManager.NavigateTo($"/", true);
         }
     }
 }
