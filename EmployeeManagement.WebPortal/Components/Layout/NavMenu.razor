@@ -28,3 +28,14 @@
     </nav>
 </div>
 
+@code{
+	[Inject]
+	private NavigationManager NavigationManager { get; set; }
+
+    private void HandleClick()
+    {
+        // This method is intentionally left empty. It serves as a placeholder for the @onclick event on the "Create" NavLink.
+        // The @onclick event is used to ensure that the navigation menu closes when the "Create" link is clicked, especially on smaller screens where the menu is collapsible.
+		NavigationManager.NavigateTo("editemployee", true);
+	}
+}
