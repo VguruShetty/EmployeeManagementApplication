@@ -6,7 +6,6 @@ namespace EmployeeManagement.WebPortal.Components.Pages
 {
     public class DisplayEmployeeBase : ComponentBase
     {
-        
         [Parameter]
         public Employee Employee { get; set; }
         [Parameter]
@@ -15,6 +14,9 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         public EventCallback<bool> OnEmployeeSelection { get; set; }
         [Inject]
         protected IEmployeeService EmployeeService { get; set; }
+        [Inject]
+        protected NavigationManager NavigationManager { get; set; } // <-- Add this line
+
         protected async Task CheckBoxChanged(ChangeEventArgs e)
         {
             OnEmployeeSelection.InvokeAsync((bool)e.Value);
@@ -22,7 +24,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         protected async Task Delete()
         {
             await EmployeeService.DeleteEmployee(Employee.EmployeeId);
-            
+            NavigationManager.NavigateTo($"/");
         }
     }
 }
