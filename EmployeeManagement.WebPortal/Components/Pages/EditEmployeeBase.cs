@@ -82,9 +82,6 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             await EmployeeService.DeleteEmployee(Employee.EmployeeId);
             NavigationManager.NavigateTo($"/");
         }
-        protected async Task EmployeeDeleted()
-        {
-            Employee = (await EmployeeService.GetEmployee(Employee.EmployeeId));
-        }
+        
     }
 }
