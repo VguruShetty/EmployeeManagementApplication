@@ -77,5 +77,10 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 NavigationManager.NavigateTo($"/");
             }
         }
+        protected async Task Delete()
+        {
+            await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+            NavigationManager.NavigateTo($"/");
+        }
     }
 }
