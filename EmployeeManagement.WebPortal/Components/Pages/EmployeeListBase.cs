@@ -28,7 +28,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             }
             else
             {
-                SelectedEmployeesCount--;
+                SelectedEmployeesCount--; 
             }
         }
         protected async Task EmployeeDeleted()
