@@ -99,9 +99,12 @@
 	<button class="btn btn-primary" type="submit">Submit</button>
 	@if (EditEmployeeModel.EmployeeId > 0)
 	{
-		<button class="btn btn-danger" type="delete" @onclick="Delete">Delete</button>
+		<button class="btn btn-danger" type="delete" @onclick="Delete_Click">Delete</button>
 	}
 	
 </EditForm>
+<Confirm @ConfirmationChanged="ConfirmDelete_Click" @ref="DeleteConfirmation"
+         ConfirmationMessage=@($"Are you sure you want to delete \"{EditEmployeeModel.FirstName}\"")>
+</Confirm>
 
 

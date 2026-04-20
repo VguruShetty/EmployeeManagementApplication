@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EmployeeManagement.Models\EmployeeManagement.Models.csproj" />
+    <ProjectReference Include="..\Shared.Components\Shared.Components.csproj" />
     <ProjectReference Include="..\SharedClass\SharedClass.csproj" />
   </ItemGroup>
 

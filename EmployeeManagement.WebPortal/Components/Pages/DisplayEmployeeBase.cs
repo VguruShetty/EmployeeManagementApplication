@@ -2,6 +2,7 @@
 using EmployeeManagement.WebPortal.Service;
 using Microsoft.AspNetCore.Components;
 
+
 namespace EmployeeManagement.WebPortal.Components.Pages
 {
     public class DisplayEmployeeBase : ComponentBase
