@@ -21,20 +21,18 @@ namespace EmployeeManagement.WebPortal.Service
 
         public async Task<Employee> CreateEmployee(Employee employee)
         {
-            //var response = await httpClient.PostAsJsonAsync("/api/employees", employee);
-            //response.EnsureSuccessStatusCode();
-            //return await response.Content.ReadFromJsonAsync<Employee>();
-            var response = await httpClient.PostAsJsonAsync("/api/employees", employee);
-
-            if (!response.IsSuccessStatusCode)
+            var response = await httpClient.PostAsJsonAsync<Employee>("/api/employees", employee);
+            if (response.IsSuccessStatusCode)
             {
-                // Read the detailed error message from the API
-                var errorContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"API Error: {errorContent}");
-                throw new Exception($"API Error: {response.StatusCode} - {errorContent}");
+                return await response.Content.ReadFromJsonAsync<Employee>();
+            }
+            else
+            {
+                // This helps you catch the "400 Bad Request" errors we discussed
+                var error = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Server Error: {error}");
             }
 
-            return await response.Content.ReadFromJsonAsync<Employee>();
         }
 
         public async Task DeleteEmployee(int id)
