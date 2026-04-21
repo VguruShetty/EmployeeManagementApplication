@@ -84,9 +84,9 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             }                    
             
         }
-        protected void Delete_Click()
+        protected void Delete()
         {
-           DeleteConfirmation.Show();
+            DeleteConfirmation.Show();
         }
         protected async Task ConfirmDelete_Click(bool deleteConfirmed)
         {
