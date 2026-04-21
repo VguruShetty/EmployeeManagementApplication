@@ -50,7 +50,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             //DepartmentId = Employee.DepartmentId.ToString();
 
             Mapper.Map(Employee, EditEmployeeModel);
-
+            EditEmployeeModel.ConfirmEmail = Employee.Email;
             //EditEmployeeModel.EmployeeId = Employee.EmployeeId;
             //EditEmployeeModel.FirstName = Employee.FirstName;
             //EditEmployeeModel.LastName = Employee.LastName;
