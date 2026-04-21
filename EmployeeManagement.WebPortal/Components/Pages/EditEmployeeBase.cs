@@ -23,7 +23,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         public IMapper Mapper { get; set; }
         [Inject]
         public NavigationManager NavigationManager { get; set; }
-        public List<Department> Departments { get; set; } = new List<Department>();
+        public List<Department>? Departments { get; set; } = new List<Department>();
         public string DepartmentId { get; set; }
         protected Shared.Components.ConfirmationBase DeleteConfirmation { get; set; }
         protected async override Task OnInitializedAsync()
@@ -80,6 +80,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                     //result = await EmployeeService.CreateEmployee(Mapper.Map(EditEmployeeModel, Employee));
 
                     var newEmployee = Mapper.Map<Employee>(EditEmployeeModel);
+                    newEmployee.Department = null;
                     result = await EmployeeService.CreateEmployee(newEmployee);
                 }
                 if (result != null)

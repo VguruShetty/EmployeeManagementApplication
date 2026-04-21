@@ -23,6 +23,6 @@ namespace EmployeeManagement.WebPortal.Models
         public int DepartmentId { get; set; }
         public string PhotoPath { get; set; }
         [ValidateComplexType]
-        public Department Department { get; set; } = new Department();
+        public Department? Department { get; set; } = new Department();
     }
 }
