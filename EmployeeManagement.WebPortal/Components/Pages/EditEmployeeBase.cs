@@ -9,6 +9,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
 {
     public class EditEmployeeBase : Component
     {
+        public List<Department> Departments { get; set; } = new List<Department>();
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
         public string PageHeaderText { get; set; }
@@ -23,7 +24,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         public IMapper Mapper { get; set; }
         [Inject]
         public NavigationManager NavigationManager { get; set; }
-        public List<Department>? Departments { get; set; } = new List<Department>();
+        
         public string DepartmentId { get; set; }
         protected Shared.Components.ConfirmationBase DeleteConfirmation { get; set; }
         protected async override Task OnInitializedAsync()
@@ -42,15 +43,18 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 {
                     DepartmentId = 1,
                     DateOfBirth = DateTime.Now,
-                    PhotoPath = "images/Goli.jpeg"
+                    PhotoPath = "images/nophoto.jpg"
                 };
             }
 
             Departments = (await DepartmentService.GetDepartments()).ToList();
+            Mapper.Map(Employee, EditEmployeeModel);
+
             //DepartmentId = Employee.DepartmentId.ToString();
 
-            Mapper.Map(Employee, EditEmployeeModel);
-            EditEmployeeModel.ConfirmEmail = Employee.Email;
+
+            //EditEmployeeModel.ConfirmEmail = Employee.Email;
+
             //EditEmployeeModel.EmployeeId = Employee.EmployeeId;
             //EditEmployeeModel.FirstName = Employee.FirstName;
             //EditEmployeeModel.LastName = Employee.LastName;
@@ -64,35 +68,20 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         }
         protected async Task HandelValidSubmit()
         {
-            try
+            Mapper.Map(EditEmployeeModel, Employee);
+            Employee result = null;
+            if(Employee.EmployeeId != 0)
             {
-                // ... your submit logic
-                Employee result = null;
-                if (Employee.EmployeeId != 0)
-                {
-                    //result = await EmployeeService.UpdateEmployee(Mapper.Map(EditEmployeeModel, Employee));
-
-                    Mapper.Map(EditEmployeeModel, Employee);
-                    result = await EmployeeService.UpdateEmployee(Employee);
-                }
-                else
-                {
-                    //result = await EmployeeService.CreateEmployee(Mapper.Map(EditEmployeeModel, Employee));
-
-                    var newEmployee = Mapper.Map<Employee>(EditEmployeeModel);
-                    newEmployee.Department = null;
-                    result = await EmployeeService.CreateEmployee(newEmployee);
-                }
-                if (result != null)
-                {
-                    // Navigate to the employee details page
-                    NavigationManager.NavigateTo($"/");
-                }
+                result = await EmployeeService.UpdateEmployee(Employee);
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"Detailed Error: {ex.Message}");
+                result = await EmployeeService.CreateEmployee(Employee);
             }
+
+            if (result != null){
+                NavigationManager.NavigateTo($"/");
+            }                    
             
         }
         protected void Delete_Click()

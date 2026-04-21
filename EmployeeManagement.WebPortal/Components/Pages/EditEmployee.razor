@@ -56,13 +56,13 @@
 			Department :
 		</label>
 		<div class="col-sm-10">
-			<InputSelect id="department" class="form-control" @bind-Value="DepartmentId">
+			<CustomInputSelect id="department" class="form-control" @bind-Value="EditEmployeeModel.DepartmentId">
 				
 				@foreach (var department in Departments)
 				{
 					<option value="@department.DepartmentId">@department.DepartmentName</option>
 				}
-			</InputSelect>
+			</CustomInputSelect>
 			@* <InputSelect id="department" class="form-control" @bind-Value="EditEmployeeModel.DepartmentId">
 				@foreach (var department in Departments)
 				{
