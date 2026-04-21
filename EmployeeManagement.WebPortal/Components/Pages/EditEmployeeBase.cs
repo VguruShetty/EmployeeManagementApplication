@@ -88,7 +88,18 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         {
             DeleteConfirmation.Show();
         }
+        [Parameter]
+        public EventCallback OnEmployeeDeleted { get; set; }
         protected async Task ConfirmDelete_Click(bool deleteConfirmed)
+        {
+            if (deleteConfirmed)
+            {
+                await EmployeeService.DeleteEmployee(EditEmployeeModel.EmployeeId);
+                //await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+                //NavigationManager.NavigateTo("/");
+            }
+        }
+        protected async Task ConfirmDelete_Click1(bool deleteConfirmed)
         {
             if (deleteConfirmed)
             {
