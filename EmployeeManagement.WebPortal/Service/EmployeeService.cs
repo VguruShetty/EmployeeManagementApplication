@@ -21,8 +21,19 @@ namespace EmployeeManagement.WebPortal.Service
 
         public async Task<Employee> CreateEmployee(Employee employee)
         {
+            //var response = await httpClient.PostAsJsonAsync("/api/employees", employee);
+            //response.EnsureSuccessStatusCode();
+            //return await response.Content.ReadFromJsonAsync<Employee>();
             var response = await httpClient.PostAsJsonAsync("/api/employees", employee);
-            response.EnsureSuccessStatusCode();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // Read the detailed error message from the API
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"API Error: {errorContent}");
+                throw new Exception($"API Error: {response.StatusCode} - {errorContent}");
+            }
+
             return await response.Content.ReadFromJsonAsync<Employee>();
         }
 
