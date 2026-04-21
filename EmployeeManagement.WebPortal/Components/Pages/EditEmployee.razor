@@ -4,6 +4,7 @@
 @inherits EditEmployeeBase
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components
+@using Shared.Components
 
 <EditForm Model="@EditEmployeeModel" OnValidSubmit="HandelValidSubmit">
 	<ObjectGraphDataAnnotationsValidator  />
@@ -103,8 +104,8 @@
 	}
 	
 </EditForm>
-<Confirm @ConfirmationChanged="ConfirmDelete_Click" @ref="DeleteConfirmation"
+<Confirmation @ConfirmationChanged="ConfirmDelete_Click" @ref="DeleteConfirmation"
          ConfirmationMessage=@($"Are you sure you want to delete \"{EditEmployeeModel.FirstName}\"")>
-</Confirm>
+</Confirmation>
 
 

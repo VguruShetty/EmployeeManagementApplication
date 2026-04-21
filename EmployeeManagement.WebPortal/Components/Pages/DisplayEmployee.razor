@@ -1,7 +1,7 @@
 ﻿
 @rendermode InteractiveServer
 @inherits DisplayEmployeeBase
-
+@using Shared.Components
 
 <div class="card">
     <div class="card-header">
@@ -20,6 +20,6 @@
     }
     
 </div>
-<Confirm @ConfirmationChanged="ConfirmDelete_Click" 
+<Confirmation @ConfirmationChanged="ConfirmDelete_Click" @ref="DeleteConfirmation"
          ConfirmationMessage=@($"Are you sure you want to delete \"{Employee.FirstName}\"")>
-</Confirm>
+</Confirmation>
