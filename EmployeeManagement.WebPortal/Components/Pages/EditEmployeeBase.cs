@@ -100,31 +100,6 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 
                 NavigationManager.NavigateTo("/");
             }
-        }
-        protected async Task ConfirmDelete_Click1(bool deleteConfirmed)
-        {
-            if (deleteConfirmed)
-            {
-                // 1. Get the ID safely
-                int.TryParse(Id, out int employeeId);
-
-                // 2. If for some reason 'Id' is null, fallback to the model
-                if (employeeId == 0)
-                {
-                    employeeId = EditEmployeeModel.EmployeeId;
-                }
-
-                if (employeeId != 0)
-                {
-                    await EmployeeService.DeleteEmployee(employeeId);
-                    NavigationManager.NavigateTo("/");
-                }
-            }
-            //if (deleteConfirmed)
-            //{
-            //    await EmployeeService.DeleteEmployee(Employee.EmployeeId);
-            //    NavigationManager.NavigateTo($"/");
-            //}
-        }
+        }        
     }
 }
