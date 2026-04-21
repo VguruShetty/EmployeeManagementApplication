@@ -33,6 +33,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             {
                 PageHeaderText = "Edit Employee";
                 Employee = await EmployeeService.GetEmployee(int.Parse(Id));
+
             }
             else
             {
@@ -63,20 +64,35 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         }
         protected async Task HandelValidSubmit()
         {
-            Employee result = null;
-            if(Employee.EmployeeId != 0)
+            try
             {
-                 result = await EmployeeService.UpdateEmployee(Mapper.Map(EditEmployeeModel, Employee));
+                // ... your submit logic
+                Employee result = null;
+                if (Employee.EmployeeId != 0)
+                {
+                    //result = await EmployeeService.UpdateEmployee(Mapper.Map(EditEmployeeModel, Employee));
+
+                    Mapper.Map(EditEmployeeModel, Employee);
+                    result = await EmployeeService.UpdateEmployee(Employee);
+                }
+                else
+                {
+                    //result = await EmployeeService.CreateEmployee(Mapper.Map(EditEmployeeModel, Employee));
+
+                    var newEmployee = Mapper.Map<Employee>(EditEmployeeModel);
+                    result = await EmployeeService.CreateEmployee(newEmployee);
+                }
+                if (result != null)
+                {
+                    // Navigate to the employee details page
+                    NavigationManager.NavigateTo($"/");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                 result = await EmployeeService.CreateEmployee(Mapper.Map(EditEmployeeModel, Employee));
+                Console.WriteLine($"Detailed Error: {ex.Message}");
             }
-            if(result != null)
-            {
-                // Navigate to the employee details page
-                NavigationManager.NavigateTo($"/");
-            }
+            
         }
         protected void Delete_Click()
         {
