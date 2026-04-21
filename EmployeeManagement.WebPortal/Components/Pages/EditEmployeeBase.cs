@@ -88,6 +88,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         protected void Delete()
         {
             DeleteConfirmation.Show();
+            Thread.Sleep(5000);
         }
         [Parameter]
         public EventCallback OnEmployeeDeleted { get; set; }
@@ -98,8 +99,9 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 await EmployeeService.DeleteEmployee(Employee.EmployeeId);
                 await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
                 
-                NavigationManager.NavigateTo("/");
             }
+
+            NavigationManager.NavigateTo("/");
         }        
     }
 }
