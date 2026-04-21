@@ -26,7 +26,6 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         public NavigationManager NavigationManager { get; set; }
         
         public string DepartmentId { get; set; }
-        protected Shared.Components.ConfirmationBase DeleteConfirmation { get; set; }
         protected async override Task OnInitializedAsync()
         {
             int.TryParse(Id, out int employeeId);
@@ -84,6 +83,8 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             }                    
             
         }
+        protected Shared.Components.ConfirmationBase DeleteConfirmation { get; set; }
+
         protected void Delete()
         {
             DeleteConfirmation.Show();
@@ -94,9 +95,10 @@ namespace EmployeeManagement.WebPortal.Components.Pages
         {
             if (deleteConfirmed)
             {
-                await EmployeeService.DeleteEmployee(EditEmployeeModel.EmployeeId);
-                //await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
-                //NavigationManager.NavigateTo("/");
+                await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+                await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+                
+                NavigationManager.NavigateTo("/");
             }
         }
         protected async Task ConfirmDelete_Click1(bool deleteConfirmed)
