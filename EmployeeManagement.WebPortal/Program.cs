@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("EmployeeManagementWebPortalContextConnection") ?? throw new InvalidOperationException("Connection string 'EmployeeManagementWebPortalContextConnection' not found.");;
-
+ 
 builder.Services.AddDbContext<EmployeeManagementWebPortalContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
