@@ -22,7 +22,8 @@ namespace EmployeeManagement.WebPortal.Models
         public Gender Gender { get; set; }
         public int DepartmentId { get; set; }
         public string PhotoPath { get; set; }
-        [ValidateComplexType]
-        public Department? Department { get; set; } = new Department();
+        //[ValidateComplexType]
+        //public Department? Department { get; set; } = new Department();
+        public Department? Department { get; set; }
     }
 }
