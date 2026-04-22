@@ -1,5 +1,5 @@
 ﻿@implements IDisposable
-@inject NavigationManager NavigationManager
+@inject NavigationManager NavigationManagers
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">EmployeeManagement.WebPortal</a>
@@ -45,7 +45,8 @@
         // The @onclick event is used to ensure that the navigation menu closes when the "Create" link is clicked, especially on smaller screens where the menu is collapsible.
 		NavigationManager.NavigateTo("editemployee", true);
 	}
-}@code {
+}
+@code {
     private string? currentUrl;
     protected override void OnInitialized()
     {
