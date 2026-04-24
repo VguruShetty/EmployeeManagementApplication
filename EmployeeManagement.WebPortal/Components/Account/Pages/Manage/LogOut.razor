@@ -1,11 +1,10 @@
 ﻿@page "/account/manage/logout"
-@using Microsoft.EntityFrameworkCore.Metadata.Internal
-@Model
-LogoutModel
+@using static Microsoft.EntityFrameworkCore.DbLoggerCategory
+@Model LogoutModel
 @{
 	ViewData["Title"] = "Log out";
 }
 <header>
-	<h1>@ViewData["Title"]</h1>
+	<h1>@<Component /></h1>
 	<p class="text-danger">You have been logged out.</p>
 </header>
