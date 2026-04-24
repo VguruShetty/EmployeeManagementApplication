@@ -1,5 +1,9 @@
-﻿<h3>LogOut</h3>
-
-@code {
-
+﻿@page "/account/manage/logout"
+@Model LogoutModel
+@{
+	ViewData["Title"] = "Log out";
 }
+<header>
+	<h1>@ViewData["Title"]</h1>
+	<p class="text-danger">You have been logged out.</p>
+</header>
