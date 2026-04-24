@@ -1,0 +1,20 @@
+﻿@page "/logout"
+@using Microsoft.AspNetCore.Identity
+@using EmployeeManagement.WebPortal.Data
+@inject SignInManager<EmployeeManagementWebPortalUser> SignInManager
+@inject NavigationManager Navigation
+
+<PageTitle>Logging out...</PageTitle>
+
+<p>Logging you out, please wait...</p>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        // This is the direct command to sign out
+        await SignInManager.SignOutAsync();
+
+        // Force a reload to the home page so the cookie is cleared
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}
