@@ -1,6 +1,9 @@
-﻿namespace EmployeeManagement.WebPortal.Components.Account.Pages.Manage
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace EmployeeManagement.WebPortal.Components.Account.Pages.Manage
 {
-    public class Logout
+
+    public class LogoutModel : PageModel
     {
     }
 }
