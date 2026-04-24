@@ -10,15 +10,17 @@ namespace EmployeeManagement.WebPortal.Components.Account.Pages.Manage
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
+
         public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
         }
+
         public void OnGet()
         {
-            // This page is intentionally left blank. The actual logout logic is handled in the Logout action of the AccountController.
         }
+
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
@@ -29,7 +31,7 @@ namespace EmployeeManagement.WebPortal.Components.Account.Pages.Manage
             }
             else
             {
-                return RedirectToPage("/Index");
+                return RedirectToPage();
             }
         }
     }
