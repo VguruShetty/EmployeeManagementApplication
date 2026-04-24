@@ -79,7 +79,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
             }
 
             if (result != null){
-                NavigationManager.NavigateTo($"/");
+                NavigationManager.NavigateTo($"/listofEmployees");
             }                    
             
         }
@@ -101,7 +101,7 @@ namespace EmployeeManagement.WebPortal.Components.Pages
                 
             }
 
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("/listofEmployees");
         }        
     }
 }

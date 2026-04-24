@@ -1,4 +1,4 @@
-﻿@inherits LayoutComponentBase
+﻿@* @inherits LayoutComponentBase
 
 <div class="page">
     <div class="sidebar">
@@ -7,7 +7,7 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="/Account/Logout" target="_blank"> <span class="bi oi-power-standby" aria-hidden="true"></span>LogOut</a>
+            <a href="/Account/Logout"> <span class="bi oi-power-standby" aria-hidden="true"></span>LogOut</a>
         </div>
 
         <article class="content px-4">
@@ -20,4 +20,42 @@
     An unhandled error has occurred.
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
+</div> *@
+
+@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            @* This section handles the Username and Login/Logout links *@
+            <AuthorizeView>
+                <Authorized>
+                    @* Only shown when logged in *@
+                    <span class="me-3">
+                        <span class="bi bi-person-fill" aria-hidden="true"></span>
+                        <strong>@context.User.Identity?.Name</strong>
+                    </span>
+                    <a href="Account/Logout" class="btn btn-outline-danger btn-sm">
+                        <span class="bi oi-power-standby" aria-hidden="true"></span> Logout
+                    </a>
+                </Authorized>
+                <NotAuthorized>
+                    @* Only shown when guest *@
+                    <a href="Account/Login" class="btn btn-outline-primary btn-sm">
+                        <span class="bi oi-lock-locked" aria-hidden="true"></span> Login
+                    </a>
+                </NotAuthorized>
+            </AuthorizeView>
+
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
 </div>
