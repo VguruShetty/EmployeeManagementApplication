@@ -6,5 +6,18 @@
 
 <header>
     <h1>@ViewData["Title"]</h1>
-    <p>You have successfully logged out of the application.</p>
+    <p>Please wait... logging you out.</p>
 </header>
+
+@* Optional: This JavaScript ensures that if the GET fails for some reason, 
+   a POST is triggered immediately upon landing on this page *@
+<script>
+    (function () {
+        // If the user isn't redirected by OnGet, force a POST
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '@Url.Page("/Account/Logout")';
+        document.body.appendChild(form);
+        // form.submit(); // Uncomment if you want to force POST only
+    })();
+</script>
