@@ -1,4 +1,4 @@
-﻿@implements IDisposable
+﻿@* @implements IDisposable
 @inject NavigationManager NavigationManagers
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
@@ -70,4 +70,81 @@
         NavigationManager.LocationChanged -= OnLocationChanged;
     }
 
+} *@
+
+@implements IDisposable
+@inject NavigationManager NavigationManager
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">EmployeeManagement</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+
+        @* 1. Public Links (Always visible) *@
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <AuthorizeView>
+            @* 2. Logged In View (Show Create, Edit, and Logout) *@
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/listofEmployees" Match="NavLinkMatch.All">
+                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/editemployee" Match="NavLinkMatch.All">
+                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Create
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/Account/Logout" Match="NavLinkMatch.All">
+                        <span class="bi oi-power-standby" aria-hidden="true"></span> Logout
+                    </NavLink>
+                </div>
+            </Authorized>
+
+            @* 3. Logged Out View (Only show Login) *@
+            <NotAuthorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/Account/Login" Match="NavLinkMatch.All">
+                        <span class="bi oi-lock-locked" aria-hidden="true"></span> Login
+                    </NavLink>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+
+    </nav>
+</div>
+
+@code {
+    private string? currentUrl;
+
+    protected override void OnInitialized()
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
 }
